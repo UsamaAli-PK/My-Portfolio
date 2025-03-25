@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/My-Portfolio/',
   build: {
     target: 'esnext',
     minify: 'terser',
@@ -28,8 +29,8 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     proxy: {
-      '/blog': {
-        target: 'https://your-domain.com',
+      '/wp-json': {
+        target: process.env.VITE_WORDPRESS_API_URL || 'http://localhost',
         changeOrigin: true,
         secure: false
       }
